@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <global-method-security pre-post-annotations="enabled"/>
+
+    <!-- Stateless REST API -->
+    <http pattern="/api/**" create-session="stateless" authentication-manager-ref="authenticationManager"
+          entry-point-ref="myBasicAuthenticationEntryPoint">
+        <csrf disabled="true"/>
+
+        <intercept-url pattern="/api/register/" access="permitAll" />
+        <intercept-url pattern="/api/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern='/api/**' access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+
+        <http-basic />
+    </http>
+
+    <!-- https://blog.codecentric.de/en/2012/07/spring-security-two-security-realms-in-one-application/
+    When you have multiple http elements in your security configuration, make sure that elements with most specific pattern
+    attributes go before the ones which are less specific or maybe even have no pattern attributes.
+    -->
+
+    <!-- normal web app -->
+    <http auto-config="true">
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <!--<intercept-url pattern="/api/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
+        <intercept-url pattern="/index" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/index/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <!-- default-target-url="/index" - Setting a Default Post-Login Destination -->
+        <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/login?error"
+                    username-parameter="username" password-parameter="password"/>
+        <logout logout-success-url="/login?logout"/>
+    </http>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="userDetailsServiceImpl">
+            <password-encoder ref="encoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean id="userDetailsServiceImpl" class="com.vitaliyhtc.tasksboard.service.UserDetailsServiceImpl"/>
+
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="11"/>
+    </beans:bean>
+
+</beans:beans>

@@ -1,0 +1,125 @@
+<div class="member-boards-view bg_eee09" ng-controller="memberBoardsViewCtrl" ng-cloak>
+
+
+
+    <div class="boards-page-board-section mod-no-sidebar">
+        <div class="boards-page-board-section-header">
+            <div class="boards-page-board-section-header-icon"><span class="icon-lg icon-member"></span></div>
+            <h3 class="boards-page-board-section-header-name"><s>Personal Boards</s> You can edit next boards:</h3>
+        </div>
+        <ul class="boards-page-board-section-list">
+            <li class="boards-page-board-section-list-item"  ng-repeat="board in boardsList">
+                <a class="board-tile" href="#/board/{{board.id}}" style="background-color: rgb(0, 121, 191);">
+                    <span class="board-tile-fade"></span>
+                    <span class="board-tile-details is-badged"><span title="{{board.boardName}}" dir="auto"
+                                class="board-tile-details-name">{{board.boardName}}</span></span>
+                    <span class="board-tile-options"><span title="Click to star this board. It will show up at top of your boards list."
+                                class="icon-sm icon-star board-tile-options-star-icon"></span></span>
+                    <span class="board-tile-badges"></span>
+                </a>
+                <div class="board-tags u-clearfix"></div>
+            </li>
+
+            <li class="boards-page-board-section-list-item"><a class="board-tile mod-add" href=""><span>Create new board…</span></a></li>
+        </ul>
+    </div>
+
+
+
+    <div class="boards-page-board-section mod-no-sidebar">
+        <div class="boards-page-board-section-header">
+            <div class="boards-page-board-section-header-icon"><span class="icon-lg icon-organization"></span></div>
+            <h3 class="boards-page-board-section-header-name"><s>Team_One</s> You can only view next boards:</h3>
+            <div class="boards-page-board-section-header-options">
+                <a class="boards-page-board-section-header-options-item dark-hover" href="/team_one3">
+                    <span class="icon-sm icon-board boards-page-board-section-header-options-item-icon"></span>
+                    <span class="boards-page-board-section-header-options-item-name"><span>Boards</span></span>
+                </a>
+                <a class="boards-page-board-section-header-options-item dark-hover" href="/team_one3/members">
+                    <span class="icon-sm icon-member boards-page-board-section-header-options-item-icon"></span>
+                    <span class="boards-page-board-section-header-options-item-name"><span>Members</span></span>
+                </a>
+                <a class="boards-page-board-section-header-options-item dark-hover" href="/team_one3/account">
+                    <span class="icon-sm icon-gear boards-page-board-section-header-options-item-icon"></span>
+                    <span class="boards-page-board-section-header-options-item-name"><span>Settings</span></span>
+                </a>
+            </div>
+        </div>
+        <ul class="boards-page-board-section-list">
+            <li class="boards-page-board-section-list-item"  ng-repeat="board in boardsOnlyViewList">
+                <a class="board-tile" href="#/board/{{board.id}}" style="background-color: rgb(0, 121, 191);">
+                    <span class="board-tile-fade"></span>
+                    <span class="board-tile-details is-badged"><span title="{{board.boardName}}" dir="auto"
+                                                                     class="board-tile-details-name">{{board.boardName}}</span></span>
+                    <span class="board-tile-options"><span title="Click to star this board. It will show up at top of your boards list."
+                                                           class="icon-sm icon-star board-tile-options-star-icon"></span></span>
+                    <span class="board-tile-badges"></span>
+                </a>
+                <div class="board-tags u-clearfix"></div>
+            </li>
+
+            <li class="boards-page-board-section-list-item"><a class="board-tile mod-add" href=""><span>Create new board…</span></a></li>
+        </ul>
+    </div>
+
+
+
+    <div class="boards-page-board-section u-clearfix"><a class="quiet-button u-float-left" href=""><span>Create a new team…</span></a></div>
+
+
+
+
+
+
+
+    <div id="pop-over" class="pop-over"></div>
+
+    <script type="text/ng-template" id="CreateBoardTemplate">
+        <div data-reactroot="">
+            <div class="pop-over-header js-pop-over-header">
+                <span class="pop-over-header-title">Create Board</span>
+                <a href="" class="pop-over-header-close-btn icon-sm icon-close" ng-click="hideCreateBoardView()"></a>
+            </div>
+            <div>
+                <div class="pop-over-content js-pop-over-content u-fancy-scrollbar js-tab-parent" style="max-height: 419px;">
+                    <div>
+                        <div>
+                            <form>
+                                <label for="boardNewTitle">Title</label>
+                                <input id="boardNewTitle" class="non-empty js-autofocus" type="text" name="name"
+                                       placeholder="Like “House Stuff” for example…" value="" dir="auto">
+                                <div class="">
+                                    <div class="u-clearfix">
+                                        <label class="u-float-left" style="margin-right: 8px;">Team</label>
+                                        <a class="icon-sm icon-information dark-hover js-helper-add-org" href=""></a>
+                                    </div>
+                                    <select class="" name="org-id">
+                                        <option value="">(none)</option>
+                                        <option value="58383a67c7604a9d0902b0f0">Team_One</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="permissionLevel" value="private">
+                                <p class="quiet js-vis-display">
+                                    <span class="icon-sm icon-private"></span>This board will be <strong>Private</strong>. <a class="js-change-vis" href="">Change.</a>
+                                </p>
+                                <ul class="pop-over-list js-vis-chooser hide">
+                                    <li><a class="js-select light-hover" href="" name="private"><span class="icon-sm vis-icon icon-private"></span>
+                                        Private <span class="icon-sm icon-check"></span> <span class="sub-name">The board is private. Only people added to the board can view and edit it.</span></a></li>
+                                    <li><a class="js-select disabled" href="" name="org"><span class="icon-sm vis-icon icon-organization"></span>
+                                        Team <span class="sub-name">The board is visible to members of the team.  Only people added to this board can edit it.  The board must be added to a team to enable this.</span></a></li>
+                                    <li><a class="js-select light-hover" href="" name="public"><span class="icon-sm vis-icon icon-public"></span>
+                                        Public <span class="sub-name">The board is public. It's visible to anyone with the link and will show up in search engines like Google.  Only people added to the board can edit it.</span></a></li>
+                                </ul>
+                                <p class="error u-bottom js-no-valid-org-privs u-clearfix hide"></p>
+                                <input class="primary wide js-submit" type="submit" value="Create">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+
+</div><!-- class="member-boards-view" -->

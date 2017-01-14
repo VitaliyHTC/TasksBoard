@@ -1,0 +1,55 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"  cache-period="86400"/><!--31556926-->
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:validation</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!--
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="9600000" />
+    </bean>
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+    -->
+
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/views/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <mvc:annotation-driven conversion-service="conversionService" />
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.vitaliyhtc.tasksboard.converter.StringToGroup"/>
+                <bean class="com.vitaliyhtc.tasksboard.converter.StringArrayToUserSortedSet"/>
+                <bean class="com.vitaliyhtc.tasksboard.converter.StringToUser"/>
+                <bean class="com.vitaliyhtc.tasksboard.converter.StringToBoardVisibility"/>
+            </set>
+        </property>
+    </bean>
+
+    <!-- monitorjbl json-view :: https://github.com/monitorjbl/json-view -->
+    <bean id="jsonViewSupport" class="com.monitorjbl.json.JsonViewSupportFactoryBean"/>
+
+</beans>

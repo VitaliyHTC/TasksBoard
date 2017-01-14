@@ -1,0 +1,181 @@
+<div class="board-wrapper" ng-controller="boardMainViewCtrl" ng-cloak>
+
+    <div class="board-main-content">
+        <div class="board-header u-clearfix js-board-header">
+            <a class="board-header-btn board-header-btn-name js-rename-board" href=""><span class="board-header-btn-text" dir="auto">{{board.boardName}}</span></a>
+            <div class="board-header-btns mod-left">
+                <a class="board-header-btn js-star-board" href="" title="Click to star or unstar this board. Starred boards show up at the top of your boards list." aria-label="Star or Unstar Board"><span class="icon-sm icon-star board-header-btn-icon"></span></a>
+                <a class="board-header-btn js-open-desc js-fill-desc" href="" title="{{board.boardDescription}}"><span class="icon-sm icon-description board-header-btn-icon"></span></a>
+                <a id="permission-level" class="board-header-btn perms-btn js-change-vis" href="" title="{{board.boardVisibility.visDescription}}"><span class="board-header-btn-icon icon-sm icon-private"></span><span class="board-header-btn-text">{{board.boardVisibility.visName}}</span></a>
+            </div><!-- board-header-btns mod-left -->
+            <div class="board-header-btns mod-right">
+                <a class="board-header-btn board-header-btn-filter-indicator js-filter-cards-indicator" href=""><span class="icon-sm icon-filter board-header-btn-icon"></span><span class="board-header-btn-text u-text-underline">Filtering is on.</span><span class="icon-sm icon-close board-header-btn-icon-close js-filter-card-clear"></span></a>
+                <a class="board-header-btn sub-btn js-board-header-subscribed" href=""><span class="icon-sm icon-subscribe board-header-btn-icon"></span><span class="board-header-btn-text u-text-underline">Subscribed</span></a>
+                <a class="board-header-btn calendar-btn js-calendar" href=""><span class="icon-sm icon-calendar board-header-btn-icon"></span><span class="board-header-btn-text u-text-underline">Calendar</span></a>
+                <span class="js-plugin-header-btns"><span class="board-header-plugin-btns hide"></span></span>
+                <a class="board-header-btn mod-show-menu js-show-sidebar" href=""><span class="icon-sm icon-overflow-menu-horizontal board-header-btn-icon"></span><span class="board-header-btn-text u-text-underline">Show Menu</span></a>
+            </div><!-- board-header-btns mod-right -->
+        </div><!-- board-header -->
+        <div class="board-canvas">
+            <div id="board" class="u-fancy-scrollbar js-no-higher-edits js-list-sortable ui-sortable">
+
+                <div class="js-list list-wrapper">
+                    <div class="list js-list-content">
+                        <div class="list-header js-list-header u-clearfix is-menu-shown">
+                            <div class="list-header-target js-editing-target"></div>
+                            <h2 class="list-header-name-assist js-list-name-assist" dir="auto">first!</h2>
+                            <textarea class="list-header-name mod-list-name js-list-name-input" spellcheck="false" dir="auto" maxlength="512" style="overflow: hidden; word-wrap: break-word; height: 24px;">first!</textarea>
+                            <p class="list-header-num-cards js-num-cards">2 cards</p>
+                            <div class="list-header-extras"><span class="list-header-extras-subscribe js-list-subscribed hide"><span class="icon-sm icon-subscribe"></span></span><a class="list-header-extras-menu dark-hover js-open-list-menu" href=""><span class="icon-sm icon-overflow-menu-horizontal"></span></a></div>
+                        </div>
+                        <div class="list-cards u-fancy-scrollbar u-clearfix js-list-cards js-sortable ui-sortable">
+                            <div class="list-card js-member-droppable ui-droppable">
+                                <div class="list-card-cover js-card-cover"></div>
+                                <span class="icon-sm icon-edit list-card-operation dark-hover js-open-quick-card-editor js-card-menu"></span>
+                                <div class="list-card-stickers-area hide"><div class="stickers js-card-stickers"></div></div>
+                                <div class="list-card-details">
+                                    <div class="list-card-labels js-card-labels"></div>
+                                    <a class="list-card-title js-card-name" dir="auto" href="/c/zHuRhFAd/1-first"><span class="card-short-id hide">#1</span>first!</a>
+                                    <div class="badges"><span class="js-badges"></span><span class="js-plugin-badges"><span></span></span></div>
+                                    <div class="list-card-members js-list-card-members"></div>
+                                </div>
+                                <p class="list-card-dropzone">Drop files to upload.</p>
+                            </div>
+                            <div class="list-card js-member-droppable ui-droppable">
+                                <div class="list-card-cover js-card-cover"></div>
+                                <span class="icon-sm icon-edit list-card-operation dark-hover js-open-quick-card-editor js-card-menu"></span>
+                                <div class="list-card-stickers-area hide"><div class="stickers js-card-stickers"></div></div>
+                                <div class="list-card-details">
+                                    <div class="list-card-labels js-card-labels"></div>
+                                    <a class="list-card-title js-card-name" dir="auto" href="/c/ODdO6xP6/2-second"><span class="card-short-id hide">#2</span>second!</a>
+                                    <div class="badges"><span class="js-badges"></span><span class="js-plugin-badges"><span></span></span></div>
+                                    <div class="list-card-members js-list-card-members"></div>
+                                </div>
+                                <p class="list-card-dropzone">Drop files to upload.</p>
+                            </div>
+                        </div>
+                        <a class="open-card-composer js-open-card-composer" href="">Add a card…</a>
+                    </div>
+                </div>
+
+                <div class="js-add-list list-wrapper mod-add is-idle">
+                    <form>
+                        <span class="placeholder js-open-add-list">Add a list…</span>
+                        <input class="list-name-input" type="text" name="name" placeholder="Add a list…" autocomplete="off" dir="auto" maxlength="512">
+                        <div class="list-add-controls u-clearfix">
+                            <input class="primary mod-list-add-button js-save-edit" type="submit" value="Save">
+                            <a class="icon-lg icon-close dark-hover js-cancel-edit" href=""></a>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- board -->
+        </div><!-- board-canvas -->
+    </div><!-- board-main-content -->
+
+    <div class="board-menu js-fill-board-menu hide">
+        <div class="board-menu-container">
+
+            <div class="board-menu-header js-board-menu-title is-board-menu-default-view is-in-frame">
+                <a class="board-menu-header-back-button icon-lg icon-back js-pop-widget-view" href="" title="Go back."></a>
+                <h3 class="board-menu-header-title js-board-menu-title-text">Menu</h3>
+                <a class="board-menu-header-close-button icon-lg icon-close js-hide-sidebar" href="" title="Close the board menu."></a>
+                <hr class="board-menu-header-divider">
+            </div>
+
+            <div class="board-menu-content u-fancy-scrollbar js-board-menu-content-wrapper">
+                <div class="board-menu-content-frame">
+                    <p class="error js-file-too-large" style="margin: 12px 0 6px; display:none;">File too large. 10mb limit.</p>
+                    <div class="board-menu-member-section js-list-members is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Members</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members">
+                            <div class="member ui-draggable">
+                                <span class="member-initials" title="VitaliyHTC (vitaliyhtc)">V</span>
+                                <span class="member-type admin" title="This member is an admin of this board."></span>
+                                <span class="member-gold-badge" title="This member has Trello Gold."></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-menu-member-section js-list-team-members is-hidden is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Team Members</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members"></div>
+                    </div>
+                    <div class="board-menu-member-section js-list-invited-members is-hidden is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Invited Members</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members"></div>
+                    </div>
+                    <div class="board-menu-member-section js-list-non-team-members is-hidden is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Non-Team Members</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members"></div>
+                    </div>
+                    <div class="board-menu-member-section js-list-observers is-hidden is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Observers</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members"></div></div>
+                    <div class="board-menu-member-section js-deactivated-members is-hidden is-partial-row">
+                        <div class="board-menu-member-section-header js-heading is-hidden">Deactivated Members</div>
+                        <div class="u-clearfix js-list js-list-draggable-board-members"></div>
+                    </div>
+                    <div class="board-members-extras-button u-clearfix js-show-extra-members-button">
+                        <a class="quiet-button js-show-extra-members" href="">Show 0 more members</a>
+                    </div>
+                    <div class="board-members-extras-button u-clearfix js-hide-extra-members-button">
+                        <a class="quiet-button js-hide-extra-members" href="">Show fewer members</a>
+                    </div>
+                    <a class="button-link mod-full js-open-manage-board-members" href=""><span class="icon-sm icon-add-member"></span>&nbsp;Add Members…</a>
+                    <hr>
+                    <ul class="board-menu-navigation">
+                        <li class="board-menu-navigation-item mod-background"><a class="board-menu-navigation-item-link js-change-background" href=""><span class="board-menu-navigation-item-link-icon js-fill-background-preview" style="/*background-image: url('undefined');*/ background-color: rgb(0, 121, 191);"></span>&nbsp;Change Background</a></li>
+                        <li class="board-menu-navigation-item"><a class="board-menu-navigation-item-link js-open-card-filter" href=""><span class="icon-sm icon-filter board-menu-navigation-item-link-icon"></span>&nbsp;Filter Cards</a></li>
+                        <li class="board-menu-navigation-item"><a class="board-menu-navigation-item-link js-open-power-ups" href=""><span class="icon-sm icon-power-up board-menu-navigation-item-link-icon"></span>&nbsp;Power-Ups&nbsp;<span class="board-menu-navigation-item-link-count js-enabled-power-up-count"></span><span class="board-menu-navigation-item-new js-power-up-new hide">New</span></a></li>
+                        <li class="board-menu-navigation-item"><a class="board-menu-navigation-item-link js-open-stickers" href=""><span class="icon-sm icon-sticker board-menu-navigation-item-link-icon"></span>&nbsp;Stickers</a></li>
+                        <li class="board-menu-navigation-item"><a class="board-menu-navigation-item-link js-open-more" href=""><span class="icon-sm icon-overflow-menu-horizontal board-menu-navigation-item-link-icon"></span>&nbsp;More</a></li>
+                    </ul>
+                    <hr>
+                    <a class="board-menu-section-header js-open-activity" href=""><span class="board-menu-section-header-icon icon-lg icon-activity"></span><span class="board-menu-section-header-title">Activity</span><span class="board-menu-section-header-count js-unread-activity-count"></span></a>
+                    <div class="js-menu-action-list">
+                        <div class="phenom mod-other-type">
+                            <div class="phenom-creator">
+                                <div class="member js-show-mem-menu" idmember="582578cb3255ef14765f72f3">
+                                    <span class="member-initials" title="VitaliyHTC (vitaliyhtc)">V</span>
+                                    <span class="member-gold-badge" title="This member has Trello Gold."></span>
+                                </div>
+                            </div>
+                            <div class="phenom-desc"><span class="inline-member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="u-font-weight-bold">VitaliyHTC</span></span> added <a class="action-card" href="https://trello.com/c/ODdO6xP6">second!</a> to first!</div>
+                            <p class="phenom-meta quiet"><a class="date js-hide-on-sending js-highlight-link" dt="2016-11-24T14:40:51.395Z" href="/c/ODdO6xP6/2-second#action-5836fbf34e4f4b892b92a34a" title="November 24, 2016 4:40 PM">Nov 24 at 4:40 PM</a><span class="js-spinner hide"><span class="spinner spinner--inline mod-left small"></span> Sending…</span></p>
+                        </div>
+                        <div class="phenom mod-other-type">
+                            <div class="phenom-creator">
+                                <div class="member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="member-initials" title="VitaliyHTC (vitaliyhtc)">V</span><span class="member-gold-badge" title="This member has Trello Gold."></span></div>
+                            </div>
+                            <div class="phenom-desc"><span class="inline-member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="u-font-weight-bold">VitaliyHTC</span></span> added <a class="action-card" href="https://trello.com/c/zHuRhFAd">first!</a> to first!</div>
+                            <p class="phenom-meta quiet"><a class="date js-hide-on-sending js-highlight-link" dt="2016-11-24T14:40:38.976Z" href="/c/zHuRhFAd/1-first#action-5836fbe654ba58c9c0ffb8c5" title="November 24, 2016 4:40 PM">Nov 24 at 4:40 PM</a><span class="js-spinner hide"><span class="spinner spinner--inline mod-left small"></span> Sending…</span></p>
+                        </div>
+                        <div class="phenom mod-other-type">
+                            <div class="phenom-creator">
+                                <div class="member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="member-initials" title="VitaliyHTC (vitaliyhtc)">V</span><span class="member-gold-badge" title="This member has Trello Gold."></span></div>
+                            </div>
+                            <div class="phenom-desc"><span class="inline-member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="u-font-weight-bold">VitaliyHTC</span></span> added first! to this board</div>
+                            <p class="phenom-meta quiet"><span class="date js-hide-on-sending" dt="2016-11-24T14:40:36.369Z" href="" title="November 24, 2016 4:40 PM">Nov 24 at 4:40 PM</span><span class="js-spinner hide"><span class="spinner spinner--inline mod-left small"></span> Sending…</span></p>
+                        </div>
+                        <div class="phenom mod-other-type">
+                            <div class="phenom-creator">
+                                <div class="member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="member-initials" title="VitaliyHTC (vitaliyhtc)">V</span><span class="member-gold-badge" title="This member has Trello Gold."></span></div>
+                            </div>
+                            <div class="phenom-desc"><span class="inline-member js-show-mem-menu" idmember="582578cb3255ef14765f72f3"><span class="u-font-weight-bold">VitaliyHTC</span></span> created this board</div>
+                            <p class="phenom-meta quiet"><span class="date js-hide-on-sending" dt="2016-11-24T14:40:14.287Z" href="" title="November 24, 2016 4:40 PM">Nov 24 at 4:40 PM</span><span class="js-spinner hide"><span class="spinner spinner--inline mod-left small"></span> Sending…</span></p>
+                        </div>
+                    </div>
+                    <a class="show-more js-fill-activity-button js-open-activity" href="">View all activity…</a>
+                </div>
+            </div>
+
+        </div><!-- board-menu-container -->
+    </div><!-- board-menu -->
+
+    <div class="pop-over"></div>
+
+
+
+
+
+</div><!-- board-wrapper -->

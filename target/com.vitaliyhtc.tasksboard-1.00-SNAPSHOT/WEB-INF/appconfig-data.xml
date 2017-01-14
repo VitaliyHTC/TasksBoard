@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/jpa
+    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.vitaliyhtc.tasksboard.model"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+                <!--
+                http://howtodoinjava.com/hibernate/use-hibernate-initialize-to-initialize-proxycollection/
+                You can use <property name="hibernate.enable_lazy_load_no_trans">true</property> OR ENABLE_LAZY_LOAD_NO_TRANS,
+                if you don’t want to make any code change and bypass all lazy load related issues. This setting will load proxy entity and collection
+                in detached entities as well. BUT USE IT WITH CAUTION. You will not be able to port your project to other JPA provider if needed.
+                You also can have the N+1 effect. Also everytime you will get the latest version of the data, which may not be desired in some cases.
+                -->
+                <!--
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="org.hibernate.stat">DEBUG</prop>
+                <prop key="hibernate.session_factory_name">sessionFactory</prop>
+                -->
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!--
+    <bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="hibernateStatisticsMBean" class="com.vitaliyhtc.tasksboard.additional.HibernateStatisticsFactoryBean">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+        <property name="locateExistingServerIfPossible" value="true" />
+    </bean>
+
+    <bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
+        <property name="beans">
+            <map>
+                <entry key="Hibernate:type=statistics">
+                    <ref bean="hibernateStatisticsMBean"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    -->
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <jpa:repositories base-package="com.vitaliyhtc.tasksboard.repositories"/>
+</beans>

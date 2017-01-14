@@ -1,0 +1,111 @@
+
+/* main css file */
+/* V8 454 */
+
+body {
+    background-color:#2196F3;
+    background-image: url('../img/windows8m3wallpaper.jpg');
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    font-family: 'Segoe UI', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+}
+
+body, label { cursor: url('../cur/mine_arrow.cur'), default; }
+a { text-decoration: none; }
+a, .btn, input[type=checkbox], input[type=radio] { cursor: url('../cur/mine_hand.cur'), pointer; }
+    /*
+    cursor: url('../cur/mine_help.cur'), help;
+    cursor: url('../cur/mine_no.cur'), not-allowed;
+    */
+
+input:disabled, button:disabled, .disabled {
+    cursor: url('../cur/mine_no.cur'), not-allowed;
+}
+
+
+
+#header {
+    height: 32px; padding: 5px;
+    background:rgba(0,0,0,0.7);
+    color:white;
+    font-size: 14px;
+    line-height: 1.42857143;
+    box-sizing: border-box;
+}
+.header .userinfo {color:#93E8FF;}
+.header a {color:#FFFFFF;}
+.header a:hover {color:#93E8FF;}
+
+.header .linksblock {float: left;}
+.header .userinfo {float: right;}
+
+div.all-wrap {
+    min-width:400px;max-width:1240px;width:100%;
+    margin: 16pt auto 0 auto; padding: 8pt;
+}
+
+.bg_white {background-color: white;}
+.bg_eee09 {background-color: rgba(230,230,230,0.9);}
+
+hr { margin-top: 8px; margin-bottom: 8px; }
+
+table.w100 {width:100%;}
+table, td, tr, th {border: 1px solid grey; text-align: left;}
+th, td {padding: 2pt 4pt;}
+table.Zebra tr:nth-child(odd):not(:first-child) { background-color: #BBDEFB; }
+tr:first-child { color: #000; background-color: #5bc0de; }
+
+
+
+/* from bootstrap */
+
+.bs-callout{
+    padding:16px;margin:16px 0;border:1px solid #eee;border-left-width:5px;border-radius:3px;
+    cursor: url('../cur/mine_help.cur'), help;
+}
+.bs-callout h4{margin-top:0;margin-bottom:5px;}
+.bs-callout p:last-child{margin-bottom:0;}
+.bs-callout code{border-radius:3px;}
+.bs-callout+.bs-callout{margin-top:-5px;}
+.bs-callout-danger{border-left-color:#ce4844;}
+.bs-callout-danger h4{color:#ce4844;}
+.bs-callout-warning{border-left-color:#aa6708;}
+.bs-callout-warning h4{color:#aa6708;}
+.bs-callout-info{border-left-color:#1b809e;}
+.bs-callout-info h4{color:#1b809e;}
+
+h1, .h1, h2, .h2, h3, .h3 { margin-top: 10px; margin-bottom: 10px; }
+
+.form-delete { max-width: 400px; padding: 15px; margin: 0 auto; }
+
+.form-signin input[type="radio"], .form-signin input[type="checkbox"] {margin-top:4px;}
+.form-signin .form-group .radio, .form-signin .form-group .checkbox {margin-left:32px;}
+
+.margin_0_0_0_10 {margin: 0 0 0 10px;}
+
+
+
+/* like trello style */
+#surface {
+    position: absolute;
+    height: 100%; width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+#surface>#header, #surface>.header-banner {
+    -webkit-box-flex: 0; -webkit-flex: none; -ms-flex: none; flex: none; flex-shrink: 0; }
+#surface>#content { -webkit-box-flex: 1; -webkit-flex-grow: 1; -ms-flex-positive: 1; flex-grow: 1; }
+#surface #header { overflow: hidden; z-index: 10; }
+#surface #content { position: relative; overflow-y: auto; }
+
+
